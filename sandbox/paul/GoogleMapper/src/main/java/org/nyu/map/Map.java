@@ -12,7 +12,7 @@ import com.google.maps.GeoApiContext;
 
 public class Map {
 	public static void main(String[] args) throws Exception {
-		GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCjb8Xx90GcIB9x2nJYuA2MLphWQ4lMDcU");
+		GeoApiContext context = new GeoApiContext().setApiKey("[key]");
 
 		int desiredDays = 10;
 		int desiredSeconds = desiredDays*24*60*60;
