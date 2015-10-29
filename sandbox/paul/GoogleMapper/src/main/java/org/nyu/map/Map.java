@@ -2,9 +2,9 @@ package org.nyu.map;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Arrays;
 
 import com.google.maps.DirectionsApi;
-import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.LatLng;
@@ -12,47 +12,76 @@ import com.google.maps.GeoApiContext;
 
 public class Map {
 	public static void main(String[] args) throws Exception {
-		GeoApiContext context = new GeoApiContext().setApiKey("[key]");
+		GeoApiContext context = new GeoApiContext().setApiKey("");
 
-		int desiredDays = 10;
-		int desiredSeconds = desiredDays*24*60*60;
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_YEAR, 120);
+		int desiredDays = 7;
+		//int startDay=120;
+		//Calendar cal = Calendar.getInstance();
+		//cal.set(Calendar.DAY_OF_YEAR, 120);
 		
-		
-        DirectionsRoute[] routes = DirectionsApi.getDirections(context, "NY", "San Francisco").await();
+        DirectionsRoute[] routes = DirectionsApi.getDirections(context, "boston", "seattle").await();
         long inSeconds = routes[0].legs[0].duration.inSeconds;
         long inMeters = routes[0].legs[0].distance.inMeters;
     	System.out.println("Steps:"+routes[0].legs[0].steps.length);
     	System.out.println("Seconds:"+inSeconds);
     	System.out.println("Meters:"+inMeters);
 
-    	long metersperday = inMeters/desiredDays;
-    	System.out.println("meters per day:"+metersperday);
-    	long totalMeters=0;
-    	long totalSeconds=0;
-    	int index = 0;
-    	for (DirectionsStep step : routes[0].legs[0].steps){
-        	totalMeters+=step.distance.inMeters;
-        	totalSeconds+=step.duration.inSeconds;
-        	System.out.println(index +" "+ step.distance.inMeters+"m "+ step.duration.inSeconds+"s");
-        	index+=1;
+    	long metersPerDay = inMeters/desiredDays;
+    	System.out.println("Meters/Day:"+metersPerDay);
+    	
+		long dailyMeter=0;
+		int day=0;
+		double[][] vacation = new double[desiredDays][2];
+    	for(int i=0;i<routes[0].legs[0].steps.length-1;i++){
+    		DirectionsStep step = routes[0].legs[0].steps[i];
+    		if(dailyMeter+step.distance.inMeters<metersPerDay){
+    			//next step is less than daily max
+    			dailyMeter+=step.distance.inMeters;
+    		}
+    		else if(dailyMeter+step.distance.inMeters>metersPerDay){
+    			//next step is greater than daily max
+    			//use subdivided polyline for shorter steps
+    			List<LatLng> path = step.polyline.decodePath();
+    			long polyTotal=step.distance.inMeters;
+    			long polyTraveled=0;
+    			int currentStep=0;
+    			int daysInPoly=0;
+    			while(polyTraveled==0 || polyTraveled+metersPerDay<polyTotal){ 
+    				//always run atleast once
+    				//loop over if the next day is all in polyline
+	    			LatLng firstpoint=path.get(currentStep);
+	    			while(currentStep+1<path.size()){
+	    				currentStep+=1;
+	    				LatLng point=path.get(currentStep);
+	    				double minorStep = haversine(firstpoint.lat, firstpoint.lng, point.lat, point.lng);
+	    				polyTraveled+=minorStep;
+	    				dailyMeter+=minorStep;
+	    				//System.out.format("---%d-%d-step%d/%d, distance:%10.3fm %8d/%-8d %8d/%-8d (%6.3f, %6.3f) (%6.3f, %6.3f) %n",
+	    				//					  day,daysInPoly,currentStep,path.size(),minorStep,    polyTraveled,polyTotal,    dailyMeter,metersPerDay*(daysInPoly+1),      firstpoint.lat,firstpoint.lng,point.lat,point.lng);
+	    				firstpoint=point;
+	    				
+	    				if(dailyMeter>=metersPerDay){
+	    					vacation[day][0]=firstpoint.lat;
+	    					vacation[day][1]=firstpoint.lng;
+	    					day+=1;
+	    					dailyMeter=0;
+	    					daysInPoly+=1;
+	    					break;
+	    				}
+	    			}
+    			}
+				dailyMeter = polyTotal - polyTraveled;
+    		}
     	}
-    	
-    	List<com.google.maps.model.LatLng> path = PolylineEncoding.decode(routes[0].legs[0].steps[0].polyline.getEncodedPath());
-    	
-    	long distance=0;
-    	LatLng firstpoint=path.get(0);
-    	for (LatLng point : path){
-    		double newDistance = haversine(firstpoint.lat, firstpoint.lng, point.lat, point.lng);
-    		distance+=newDistance;
-    		System.out.println("distance:"+distance+"m ("+firstpoint.lat+","+firstpoint.lng+") ("+point.lat+","+point.lng+")" );
-    		
-    		firstpoint=point;
-    	}
-    	
-    	System.out.println("TotalSeconds:"+totalSeconds+"s");
-    	System.out.println("TotalMeters:"+totalMeters+"m");
+    	vacation[desiredDays-1][0]=routes[0].legs[0].endLocation.lat;
+		vacation[desiredDays-1][1]=routes[0].legs[0].endLocation.lng;
+		
+    	System.out.println(Arrays.deepToString(vacation));
+    	System.out.println(routes[0].overviewPolyline.getEncodedPath().replace("\\","\\\\")); //the \ should not be treated as an escape character (this may not work with \\u)
+    	//in case encodedPath fails
+    	//for (LatLng point : routes[0].overviewPolyline.decodePath()){
+    	//	System.out.format("[%f,%f],",point.lat, point.lng);
+    	//}
 	}
 	
     public static final double R = 6372800; //earth radius in meters
