@@ -1,9 +1,12 @@
 package org.nyu.map;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -12,6 +15,10 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
   @Override
   public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 	String line = value.toString();
+	Configuration conf = context.getConfiguration();
+	String FIPS = conf.get("FIPS");
+	System.out.println(FIPS);
+	
 	if(Character.isAlphabetic(line.charAt(0))){
 		return;  //ignore header
 	}
@@ -70,13 +77,30 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
 						"EVENT_NARRATIVE",
 						"DATA_SOURCE"
 	};
-
 	
+
 	int count=0;
     for(String token : tokens){
+    	if (token.startsWith("\"") && token.endsWith("\"") || token.startsWith("\'") && token.endsWith("\'")){
+    		token = token.substring(1,token.length() -1);
+    	}
 	    row.put(headers[count],token);
 	    count++;
     }
-    context.write(new Text("BEGIN_YEARMONTH"),new Text(row.get("BEGIN_YEARMONTH")));
+    
+	Calendar start = Calendar.getInstance();
+	start.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("BEGIN_DAY")));
+	start.set(Calendar.MONTH, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(4)));
+	start.set(Calendar.YEAR, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(0,4)));
+	Calendar end = Calendar.getInstance();
+	end.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("END_DAY")));
+	end.set(Calendar.MONTH, Integer.parseInt(row.get("END_YEARMONTH").substring(4)));
+	end.set(Calendar.YEAR, Integer.parseInt(row.get("END_YEARMONTH").substring(0,4)));
+
+	while(!start.after(end)){
+		//System.out.println(row.get("STATE_FIPS")+row.get("CZ_FIPS")+"_"+start.get(Calendar.DAY_OF_YEAR)+" "+row.get("EVENT_TYPE"));
+	    context.write(new Text(row.get("STATE_FIPS")+row.get("CZ_FIPS")+"_"+start.get(Calendar.DAY_OF_YEAR)), new Text(row.get("EVENT_TYPE")));
+	    start.add(Calendar.DATE, 1);
+	}
   }
 }
