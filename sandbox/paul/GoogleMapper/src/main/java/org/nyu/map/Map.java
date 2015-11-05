@@ -4,20 +4,35 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Arrays;
 
+import org.json.JSONObject;
+
 import com.google.maps.DirectionsApi;
+import com.google.maps.GeocodingApi;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DirectionsStep;
+import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.GeoApiContext;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 
 public class Map {
 	public static void main(String[] args) throws Exception {
 		GeoApiContext context = new GeoApiContext().setApiKey("");
 
 		int desiredDays = 7;
-		//int startDay=120;
-		//Calendar cal = Calendar.getInstance();
-		//cal.set(Calendar.DAY_OF_YEAR, 120);
+		
+		Client client = Client.create();
+		WebResource webResource = client.resource("http://data.fcc.gov/api/block/find?format=json&latitude=28.35975&longitude=-81.421988&showall=true");
+		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+		}
+		response.bufferEntity();
+		String output = response.getEntity(String.class);
+		JSONObject obj = new JSONObject(output);
+		System.out.println(obj.getJSONObject("County").getString("FIPS"));
 		
         DirectionsRoute[] routes = DirectionsApi.getDirections(context, "boston", "seattle").await();
         long inSeconds = routes[0].legs[0].duration.inSeconds;
@@ -75,17 +90,18 @@ public class Map {
     	}
     	vacation[desiredDays-1][0]=routes[0].legs[0].endLocation.lat;
 		vacation[desiredDays-1][1]=routes[0].legs[0].endLocation.lng;
-		
     	System.out.println(Arrays.deepToString(vacation));
     	System.out.println(routes[0].overviewPolyline.getEncodedPath().replace("\\","\\\\")); //the \ should not be treated as an escape character (this may not work with \\u)
     	//in case encodedPath fails
     	//for (LatLng point : routes[0].overviewPolyline.decodePath()){
     	//	System.out.format("[%f,%f],",point.lat, point.lng);
     	//}
+		 */
 	}
 	
     public static final double R = 6372800; //earth radius in meters
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
+    	//get distance between two points 
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         lat1 = Math.toRadians(lat1);

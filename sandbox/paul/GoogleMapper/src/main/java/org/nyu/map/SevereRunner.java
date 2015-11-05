@@ -15,14 +15,14 @@ public abstract class SevereRunner {
 	public static void main(String[] args) throws Exception {
 		BasicConfigurator.configure();
 	    Configuration conf = new Configuration();
-	    conf.set("FIPS", "36001 36002 36003");
-	    
+	    conf.set("FIPS", "36061 20091 06075");
 		Job job = new Job(conf, "SevereMapper");
 	    
 	    job.setJarByClass(SevereRunner.class);
 	    job.setJobName("SevereMapper");
 
-	    FileInputFormat.addInputPath(job, new Path("/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/sample/Storm*"));
+	    //FileInputFormat.addInputPath(job, new Path("/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/sample/Storm*"));
+	    FileInputFormat.addInputPath(job, new Path("/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*"));
 	    FileOutputFormat.setOutputPath(job, new Path("/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/output"));
 	    
 	    job.setMapperClass(SevereMapper.class);
@@ -30,10 +30,15 @@ public abstract class SevereRunner {
 
 	    job.setMapOutputKeyClass(Text.class);
 	    job.setMapOutputValueClass(Text.class);
-	    job.setOutputKeyClass(Text.class);
-	    job.setOutputValueClass(IntWritable.class);
+	    job.setOutputKeyClass(IntWritable.class);
+	    job.setOutputValueClass(Text.class);
 	    
-	    System.exit(job.waitForCompletion(true) ? 0 : 1);
+	    long startTime = System.nanoTime();
+	    boolean result = job.waitForCompletion(true);
+	    long endTime =System.nanoTime();
+	    System.out.println("Took "+(double)(endTime-startTime)/60000000000.0+" minutes");
+	    
+	    System.exit(result? 0 : 1);
 
 	}
 
