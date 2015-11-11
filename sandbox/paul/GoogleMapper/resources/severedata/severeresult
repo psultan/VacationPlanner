@@ -1,0 +1,340 @@
+002	8	1_Tornado
+003	5	1_WinterStorm
+004	5	1_WinterStorm
+005	3	1_WinterWeather 1_HighWind
+007	15	1_IceStorm 1_WinterStorm 1_ThunderstormWind
+008	8	1_IceStorm 1_StrongWind
+009	6	1_IceStorm
+010	7	1_IceStorm 1_HighWind
+011	9	1_IceStorm 1_HeavySnow
+012	19	1_WinterStorm 1_HighWind 3_HeavySnow 1_ExtremeCold/WindChill
+013	6	2_HeavySnow
+014	6	2_HeavySnow
+015	4	1_ExtremeCold/WindChill
+016	4	1_ExtremeCold/WindChill
+017	4	1_Cold/WindChill
+018	12	1_Cold/WindChill 1_Blizzard
+019	12	1_Cold/WindChill 1_Blizzard
+020	9	1_Cold/WindChill 1_WinterStorm
+021	6	1_WinterStorm 1_HighWind
+022	8	2_ThunderstormWind
+023	10	2_WinterStorm
+024	5	1_WinterStorm
+025	5	1_WinterStorm
+026	9	1_WinterStorm 1_ThunderstormWind
+027	6	2_HighWind 1_ExtremeCold/WindChill
+028	12	1_Blizzard 1_ExtremeCold/WindChill
+029	13	1_Blizzard 1_HighWind 1_ExtremeCold/WindChill
+030	7	1_WinterStorm 1_WinterWeather
+031	14	1_Cold/WindChill 2_WinterStorm
+032	26	1_Cold/WindChill 4_WinterStorm 2_HighWind
+033	13	1_Cold/WindChill 1_WinterStorm 1_HighWind 1_HeavySnow
+034	11	1_Cold/WindChill 1_HeavySnow 1_ExtremeCold/WindChill
+035	13	1_Cold/WindChill 1_WinterStorm 1_ExtremeCold/WindChill
+036	10	2_Cold/WindChill 1_WinterWeather
+037	21	2_Cold/WindChill 1_WinterWeather 1_Flood 1_Hail
+038	36	1_FlashFlood 1_Cold/WindChill 2_WinterStorm 2_Flood
+039	16	1_Cold/WindChill 1_WinterStorm 1_Flood
+040	19	1_FlashFlood 1_Cold/WindChill 1_Flood
+041	16	1_Cold/WindChill 1_ThunderstormWind 1_HighWind 1_Flood
+042	15	1_IceStorm 1_Cold/WindChill 1_WinterStorm
+043	12	2_IceStorm
+044	6	1_IceStorm
+045	14	1_WinterStorm 1_Blizzard 1_HighWind
+046	13	1_WinterStorm 1_Blizzard
+047	10	1_Blizzard 2_HighWind
+048	3	1_WinterWeather 1_HighWind
+050	3	1_HeavySnow
+051	1	1_HighWind
+053	1	1_HighWind
+054	1	1_HighWind
+055	5	1_WinterStorm
+056	20	1_WinterStorm 1_HighWind 2_Flood
+057	14	2_Flood
+058	19	1_WinterStorm 2_Flood
+059	13	2_WinterStorm 1_HeavySnow
+060	8	1_WinterStorm 1_HeavySnow
+061	10	1_WinterStorm 1_WinterWeather 1_HeavySnow
+062	5	1_WinterStorm
+063	7	1_WinterStorm 1_WinterWeather
+065	5	1_WinterStorm
+066	5	1_WinterStorm
+067	1	1_HighWind
+068	3	1_DebrisFlow
+070	6	1_ThunderstormWind 1_WinterWeather
+071	3	1_HeavySnow
+073	7	1_HighWind 2_HeavySnow
+074	7	1_HighWind 2_HeavySnow
+076	7	1_Flood
+077	10	1_Flood 1_HeavySnow
+078	23	4_WinterStorm 1_HeavySnow
+079	27	4_WinterStorm 1_Flood
+080	21	2_WinterStorm 1_HighWind 1_Flood 1_Sleet
+081	20	2_WinterStorm 1_Flood 1_Sleet
+082	18	2_WinterStorm 1_Blizzard
+083	16	1_WinterStorm 1_Blizzard 3_HighWind
+084	14	1_WinterStorm 1_Blizzard 1_HighWind
+086	6	2_HeavySnow
+087	17	1_WinterStorm 1_Blizzard 1_Hail
+088	6	1_WinterStorm 1_HighWind
+089	1	1_HighWind
+090	7	1_HighWind 2_HeavySnow
+093	7	1_ThunderstormWind 1_HeavySnow
+094	20	1_WinterStorm 3_ThunderstormWind 1_HeavySnow
+095	5	1_WinterStorm
+097	17	2_WinterStorm 1_Hail 1_HeavySnow
+098	16	1_WinterStorm 1_HighWind 1_Flood 1_HeavySnow
+099	11	1_WinterWeather 2_HighWind 1_Flood
+100	10	2_ThunderstormWind 1_WinterWeather
+101	41	1_WinterStorm 1_ThunderstormWind 8_Hail
+102	1	1_HighWind
+103	9	1_WinterStorm 1_Hail
+104	7	1_WinterStorm 1_WinterWeather
+105	2	1_WinterWeather
+106	14	1_WinterStorm 1_WinterWeather 1_Hail 1_HeavySnow
+107	7	1_WinterWeather 2_HighWind 1_HeavySnow
+108	18	1_WinterWeather 1_HighWind 3_Hail 1_HeavySnow
+109	15	1_Lightning 1_WinterWeather 1_Flood
+110	10	1_WinterWeather 2_Hail
+111	19	1_WinterStorm 1_ThunderstormWind 1_WinterWeather 2_Hail
+112	17	1_WinterWeather 1_Blizzard 1_Flood
+113	15	1_ThunderstormWind 1_Blizzard 1_HeavySnow
+114	16	1_WinterStorm 1_ThunderstormWind 1_Hail 1_HeavySnow
+115	18	1_Tornado 1_WinterStorm 2_HighWind 1_HeavySnow
+116	24	1_ThunderstormWind 1_HighWind 4_Hail 1_HeavySnow
+117	13	1_Cold/WindChill 1_WinterStorm 1_Hail
+118	45	1_FunnelCloud 1_Tornado 1_Cold/WindChill 4_ThunderstormWind 3_Hail
+119	35	1_Lightning 1_Cold/WindChill 1_HighWind 6_Hail
+120	16	3_ThunderstormWind 1_Hail
+121	22	1_IceStorm 4_Hail
+122	36	1_ThunderstormWind 2_Blizzard 4_Hail
+123	20	1_Blizzard 1_HighWind 2_Hail 1_Frost/Freeze
+124	34	1_Lightning 1_WinterStorm 2_ThunderstormWind 1_Blizzard 1_Hail 1_Frost/Freeze
+125	48	1_WinterStorm 2_ThunderstormWind 1_Blizzard 6_Hail 1_Frost/Freeze
+126	29	1_WinterStorm 3_ThunderstormWind 1_HighWind 2_Hail 1_Frost/Freeze
+127	14	2_Hail 1_HeavySnow 1_Frost/Freeze
+128	39	2_ThunderstormWind 1_HighWind 6_Hail 1_HeavySnow 1_Frost/Freeze
+129	53	1_Tornado 2_WinterStorm 1_ThunderstormWind 7_Hail 1_Frost/Freeze
+131	1	1_HighWind
+132	44	6_ThunderstormWind 5_Hail
+133	48	1_Tornado 5_ThunderstormWind 5_Hail
+134	16	1_ThunderstormWind 3_Hail
+135	51	2_FlashFlood 1_Tornado 1_ThunderstormWind 1_Flood 4_Hail
+136	19	3_ThunderstormWind 1_Flood
+137	29	1_Lightning 4_ThunderstormWind 1_Flood
+138	30	2_ThunderstormWind 2_Flood 2_Hail
+139	59	1_Tornado 1_Lightning 2_WinterStorm 2_ThunderstormWind 1_Flood 5_Hail
+140	107	4_Tornado 1_Lightning 2_WinterStorm 7_ThunderstormWind 1_Flood 6_Hail
+141	19	1_ThunderstormWind 1_Flood 2_Hail
+142	23	2_Lightning 1_Flood 1_Hail
+143	8	1_HighWind 1_Flood
+144	24	1_FlashFlood 1_HighWind 1_Flood 2_Hail
+145	39	3_ThunderstormWind 1_Flood 5_Hail
+146	32	4_Flood 1_Hail
+147	57	1_FunnelCloud 1_Tornado 2_ThunderstormWind 4_HighWind 4_Flood 1_Hail
+148	61	1_Tornado 2_ThunderstormWind 3_Flood 6_Hail
+149	50	1_FunnelCloud 1_Tornado 2_ThunderstormWind 1_HighWind 3_Flood 1_Wildfire
+150	7	1_Wildfire
+151	32	1_ThunderstormWind 3_Flood 1_Wildfire
+152	59	1_HeavyRain 1_Blizzard 4_Flood 5_Hail
+153	55	2_ThunderstormWind 2_HeavyRain 1_HighWind 4_Flood 3_Hail
+154	50	2_ThunderstormWind 2_HeavyRain 4_Flood 2_Hail
+155	55	1_Tornado 1_ThunderstormWind 2_HeavyRain 1_HighWind 4_Flood 2_Hail
+156	60	1_Lightning 1_ThunderstormWind 2_HeavyRain 4_Flood 4_Hail
+157	95	1_FlashFlood 1_Tornado 1_ThunderstormWind 1_HeavyRain 1_HighWind 5_Flood 9_Hail
+158	115	2_FlashFlood 6_WinterStorm 3_ThunderstormWind 1_HeavyRain 2_HighWind 4_Flood 6_Hail
+159	129	1_Tornado 6_WinterStorm 8_ThunderstormWind 1_HeavyRain 4_Flood 7_Hail
+160	75	1_FlashFlood 2_Tornado 4_ThunderstormWind 1_HeavyRain 4_Flood 1_Hail
+161	102	2_ThunderstormWind 1_HeavyRain 4_Flood 15_Hail 1_HeavySnow
+162	80	2_Tornado 1_ThunderstormWind 1_HeavyRain 1_StrongWind 5_Flood 5_Hail
+163	63	2_FlashFlood 1_HeavyRain 4_Flood 4_Hail
+164	122	1_FlashFlood 13_ThunderstormWind 1_HeavyRain 5_Flood 6_Hail
+165	100	2_FlashFlood 3_ThunderstormWind 2_HeavyRain 6_Flood 6_Hail
+166	51	1_FlashFlood 1_ThunderstormWind 1_HeavyRain 4_Flood 2_Hail
+167	65	1_Lightning 1_ThunderstormWind 1_HeavyRain 4_Flood 6_Hail
+168	53	1_Lightning 2_ThunderstormWind 1_HeavyRain 4_Flood 2_Hail
+169	73	1_Tornado 1_Lightning 5_ThunderstormWind 1_HeavyRain 4_Flood 2_Hail
+170	90	3_FlashFlood 4_ThunderstormWind 1_HeavyRain 5_Flood 3_Hail
+171	51	3_ThunderstormWind 1_HeavyRain 1_HighWind 5_Flood
+172	49	2_ThunderstormWind 2_HeavyRain 5_Flood
+173	74	5_ThunderstormWind 1_HeavyRain 5_Flood 4_Hail
+174	91	2_FlashFlood 1_Tornado 3_ThunderstormWind 1_HeavyRain 1_HighWind 5_Flood 4_Hail
+175	95	2_FlashFlood 1_Tornado 2_ThunderstormWind 1_HeavyRain 8_Flood 1_Hail
+176	106	1_FlashFlood 1_Lightning 6_ThunderstormWind 1_HeavyRain 7_Flood 4_Hail
+177	93	6_ThunderstormWind 1_HeavyRain 6_Flood 6_Hail
+178	78	3_ThunderstormWind 1_HeavyRain 5_Flood 7_Hail
+179	92	1_FlashFlood 1_Lightning 6_ThunderstormWind 1_HeavyRain 5_Flood 4_Hail
+180	177	1_FlashFlood 2_Tornado 13_ThunderstormWind 1_HeavyRain 6_Flood 14_Hail
+181	103	2_FlashFlood 11_ThunderstormWind 1_HeavyRain 4_Flood 3_Hail
+182	103	3_FlashFlood 1_Tornado 12_ThunderstormWind 1_HeavyRain 1_HighWind 1_Flood 3_Hail
+183	32	1_ThunderstormWind 7_Hail
+184	126	1_FlashFlood 1_Tornado 13_ThunderstormWind 1_HeavyRain 1_Flood 12_Hail
+185	70	6_Tornado 1_Lightning 1_ThunderstormWind 1_HighWind 1_Flood 1_Hail
+186	28	1_FunnelCloud 1_ThunderstormWind 1_Flood 3_Hail
+187	68	1_FlashFlood 2_Tornado 3_ThunderstormWind 1_HighWind 1_Flood 6_Hail
+188	64	1_FlashFlood 2_Tornado 5_ThunderstormWind 1_HighWind 1_Flood 3_Hail
+189	57	1_Lightning 5_ThunderstormWind 1_Flood 6_Hail
+190	17	1_Lightning 1_HeavyRain 1_HighWind 1_Flood
+191	99	1_FlashFlood 2_Tornado 4_ThunderstormWind 1_HeavyRain 3_Flood 7_Hail 1_Wildfire
+192	86	1_Lightning 10_ThunderstormWind 3_Flood 3_Hail 1_Wildfire
+193	127	4_FlashFlood 9_ThunderstormWind 2_HighWind 2_Flood 9_Hail 1_Wildfire
+194	66	1_FunnelCloud 1_Tornado 3_ThunderstormWind 2_Flood 5_Hail 1_Wildfire
+195	66	7_ThunderstormWind 2_Flood 6_Hail
+196	105	2_FlashFlood 1_Lightning 12_ThunderstormWind 1_Flood 7_Hail
+197	89	1_Tornado 6_ThunderstormWind 9_Hail 3_Wildfire
+198	66	9_ThunderstormWind 4_Hail 2_Wildfire
+199	90	1_FlashFlood 1_Lightning 4_ThunderstormWind 1_Flood 8_Hail 3_Wildfire
+200	98	2_FlashFlood 1_Lightning 10_ThunderstormWind 1_Flood 2_Hail 3_Wildfire
+201	77	6_ThunderstormWind 3_Flood 4_Wildfire 1_ExcessiveHeat
+202	149	6_Tornado 7_ThunderstormWind 1_HighWind 1_Flood 10_Hail 3_Wildfire 1_ExcessiveHeat
+203	108	1_FlashFlood 9_ThunderstormWind 1_Flood 8_Hail 3_Wildfire 1_ExcessiveHeat
+204	79	1_FlashFlood 1_Tornado 4_ThunderstormWind 1_HeavyRain 1_Flood 3_Hail 3_Wildfire 1_ExcessiveHeat
+205	94	2_Tornado 1_Lightning 4_ThunderstormWind 1_Flood 6_Hail 3_Wildfire 1_ExcessiveHeat
+206	109	1_Tornado 1_Lightning 3_ThunderstormWind 2_Flood 11_Hail 3_Wildfire 1_ExcessiveHeat
+207	92	1_FlashFlood 1_Tornado 8_ThunderstormWind 1_Flood 3_Hail 3_Wildfire 1_ExcessiveHeat
+208	47	6_ThunderstormWind 1_Flood 3_Hail 1_ExcessiveHeat
+209	30	3_ThunderstormWind 1_Flood 1_Wildfire 1_ExcessiveHeat
+210	59	3_Tornado 6_ThunderstormWind 1_Wildfire 1_ExcessiveHeat
+211	44	1_Lightning 2_ThunderstormWind 1_HighWind 2_Flood 1_Hail 1_Wildfire 1_ExcessiveHeat
+212	40	1_Tornado 1_ThunderstormWind 2_Flood 1_Hail 1_Wildfire 1_Heat
+213	83	2_Lightning 4_ThunderstormWind 2_Flood 5_Hail 2_Wildfire 1_Heat 1_ExcessiveHeat
+214	54	2_ThunderstormWind 3_Flood 1_Hail 2_Wildfire 1_Heat 1_ExcessiveHeat
+215	76	9_ThunderstormWind 2_Flood 2_Hail 2_Wildfire 1_ExcessiveHeat
+216	100	1_FlashFlood 2_Tornado 7_ThunderstormWind 3_Flood 4_Hail 1_Wildfire 1_ExcessiveHeat
+217	114	1_FunnelCloud 3_Lightning 2_ThunderstormWind 4_Flood 11_Hail 1_Wildfire 1_ExcessiveHeat
+218	110	1_FunnelCloud 2_FlashFlood 1_Lightning 10_ThunderstormWind 3_Flood 2_Hail 1_Wildfire 1_Heat 1_ExcessiveHeat
+219	98	1_FlashFlood 1_Tornado 1_Lightning 7_ThunderstormWind 2_Flood 5_Hail 1_Wildfire 1_Heat 1_ExcessiveHeat
+220	60	1_Tornado 2_ThunderstormWind 2_Flood 4_Hail 1_Wildfire 1_Heat 1_ExcessiveHeat
+221	52	7_ThunderstormWind 2_Flood 1_Wildfire 1_Heat
+222	100	2_FlashFlood 1_Lightning 1_Drought 7_ThunderstormWind 2_Flood 6_Hail 1_Wildfire 1_Heat
+223	54	1_Drought 5_ThunderstormWind 2_Flood 2_Hail 1_Wildfire 1_Heat
+224	96	1_FlashFlood 1_Lightning 1_Drought 8_ThunderstormWind 2_Flood 5_Hail 2_Wildfire
+225	101	2_Tornado 1_Drought 7_ThunderstormWind 2_Flood 4_Hail 3_Wildfire 1_ExcessiveHeat
+226	98	1_FlashFlood 1_Tornado 1_Lightning 1_Drought 7_ThunderstormWind 2_HeavyRain 2_Flood 3_Hail 2_Wildfire
+227	72	1_Lightning 1_Drought 6_ThunderstormWind 2_Flood 3_Hail 2_Wildfire
+228	63	1_FlashFlood 1_Drought 1_ThunderstormWind 2_Flood 1_Hail 2_Wildfire 3_Heat 2_ExcessiveHeat
+229	83	2_FlashFlood 1_Drought 4_ThunderstormWind 2_Flood 2_Hail 2_Wildfire 3_Heat 1_ExcessiveHeat
+230	83	1_FlashFlood 1_Drought 6_ThunderstormWind 2_Flood 2_Hail 2_Wildfire 3_Heat 1_ExcessiveHeat
+231	82	1_FlashFlood 1_Lightning 1_Drought 2_ThunderstormWind 1_HeavyRain 2_Flood 2_Hail 2_Wildfire 5_Heat 1_ExcessiveHeat
+232	60	1_Tornado 1_Drought 1_ThunderstormWind 2_Flood 2_Wildfire 6_Heat
+233	148	2_FlashFlood 1_Drought 16_ThunderstormWind 2_Flood 3_Hail 3_Wildfire 5_Heat 1_ExcessiveHeat
+234	141	2_FlashFlood 1_Drought 12_ThunderstormWind 2_Flood 5_Hail 3_Wildfire 4_Heat 2_ExcessiveHeat
+235	141	1_FlashFlood 1_Lightning 1_Drought 8_ThunderstormWind 2_HeavyRain 3_Flood 7_Hail 3_Wildfire 3_Heat 2_ExcessiveHeat
+236	105	2_FlashFlood 1_Drought 6_ThunderstormWind 3_Flood 2_Hail 3_Wildfire 3_Heat 1_ExcessiveHeat
+237	78	1_FlashFlood 1_Drought 6_ThunderstormWind 2_Flood 2_Wildfire 4_Heat 1_ExcessiveHeat
+238	79	2_FlashFlood 1_Drought 5_ThunderstormWind 2_Flood 2_Wildfire 3_Heat 1_ExcessiveHeat
+239	91	2_FlashFlood 1_Drought 6_ThunderstormWind 2_Flood 2_Hail 2_Wildfire 3_Heat 1_ExcessiveHeat
+240	84	1_FunnelCloud 1_FlashFlood 1_Drought 6_ThunderstormWind 2_Flood 3_Hail 1_Wildfire 4_Heat
+241	51	1_Drought 5_ThunderstormWind 2_Flood 5_Heat
+242	39	1_Drought 2_ThunderstormWind 2_Flood 5_Heat
+243	97	3_FlashFlood 2_Lightning 2_Drought 5_ThunderstormWind 1_HeavyRain 2_Flood 2_Hail 4_Heat
+244	68	2_Drought 1_ThunderstormWind 2_HeavyRain 2_Flood 6_Hail 4_Heat 1_ExcessiveHeat
+245	102	1_Lightning 2_Drought 13_ThunderstormWind 2_Flood 4_Hail 2_Heat 1_ExcessiveHeat
+246	61	2_Drought 6_ThunderstormWind 2_Flood 3_Hail 1_Heat 1_ExcessiveHeat
+247	73	2_Drought 8_ThunderstormWind 2_Flood 4_Hail 1_Heat 1_ExcessiveHeat
+248	53	1_FlashFlood 2_Drought 4_ThunderstormWind 2_Flood 1_Hail 1_Heat 1_ExcessiveHeat
+249	41	2_Drought 4_ThunderstormWind 2_Flood 1_Heat 1_ExcessiveHeat
+250	67	2_FlashFlood 1_Lightning 2_Drought 4_ThunderstormWind 2_Flood 1_Heat 2_ExcessiveHeat
+251	96	1_Tornado 2_Lightning 2_Drought 5_ThunderstormWind 1_HeavyRain 2_Flood 6_Hail 1_Heat 2_ExcessiveHeat
+252	86	2_FlashFlood 1_Lightning 2_Drought 5_ThunderstormWind 4_Flood 1_Hail 2_ExcessiveHeat
+253	82	3_FlashFlood 2_Drought 4_ThunderstormWind 2_Flood 4_Hail 2_ExcessiveHeat
+254	34	2_Drought 1_ThunderstormWind 2_Flood 1_Hail 2_ExcessiveHeat
+255	57	1_FlashFlood 2_Drought 3_ThunderstormWind 2_Flood 1_Hail 1_Wildfire 2_ExcessiveHeat
+256	61	1_FlashFlood 2_Drought 5_ThunderstormWind 2_Flood 1_Wildfire 2_ExcessiveHeat
+257	47	1_Lightning 2_Drought 1_ThunderstormWind 2_Flood 3_Hail 1_Heat 1_ExcessiveHeat
+258	76	2_FlashFlood 1_Tornado 2_Drought 3_ThunderstormWind 1_DebrisFlow 2_Flood 3_Hail 1_Heat 1_ExcessiveHeat
+259	64	1_FlashFlood 1_Lightning 2_Drought 7_ThunderstormWind 1_Flood 2_Hail 1_Heat
+260	34	1_Tornado 2_Drought 3_ThunderstormWind 1_Flood 1_Heat
+261	65	1_FlashFlood 2_Lightning 2_Drought 6_ThunderstormWind 2_Flood 1_Heat
+262	34	2_Drought 1_Flood 4_Hail 1_Heat 1_ExcessiveHeat
+263	44	1_FlashFlood 2_Drought 1_HeavyRain 1_Flood 3_Hail 2_Heat 1_ExcessiveHeat
+264	49	1_FunnelCloud 1_Lightning 2_Drought 4_ThunderstormWind 1_Flood 1_Hail 1_Heat 1_ExcessiveHeat
+265	83	1_FlashFlood 1_Lightning 2_Drought 9_ThunderstormWind 3_Flood 1_Hail 1_ExcessiveHeat
+266	40	1_Tornado 2_Drought 3_Flood 1_Heat 1_ExcessiveHeat
+267	43	1_FlashFlood 1_Lightning 2_Drought 2_Flood 1_Hail 1_Heat 1_ExcessiveHeat
+268	37	2_Drought 2_ThunderstormWind 2_Flood 1_Hail 1_Heat 1_ExcessiveHeat
+269	52	2_Drought 4_ThunderstormWind 2_HeavyRain 1_Flood 3_Hail 1_Heat 1_ExcessiveHeat
+270	32	2_Drought 3_ThunderstormWind 2_HeavyRain 1_Flood 1_Heat
+271	17	1_Lightning 2_Drought 1_Flood
+272	38	2_Drought 2_Flood 5_Hail
+273	27	1_FlashFlood 3_Drought 1_Flood 2_Heat
+274	43	3_Drought 3_ThunderstormWind 2_Flood 2_Hail 1_Heat
+275	52	1_FlashFlood 1_Lightning 2_Drought 4_ThunderstormWind 1_Flood 2_Hail 1_Heat
+276	44	1_FunnelCloud 2_Drought 2_ThunderstormWind 1_Flood 5_Hail
+277	27	2_Drought 1_ThunderstormWind 1_Flood 3_Hail
+278	43	2_FlashFlood 1_Tornado 2_Drought 1_ThunderstormWind 1_Flood 1_Hail
+279	23	1_FlashFlood 2_Drought 1_ThunderstormWind 1_Flood
+280	42	1_FlashFlood 2_Drought 3_ThunderstormWind 1_HeavyRain 1_Flood 2_Hail
+281	34	1_FlashFlood 2_Drought 2_ThunderstormWind 1_HeavyRain 1_Flood 1_Hail
+282	11	2_Drought 1_Flood
+283	42	3_Tornado 2_Drought 2_Flood
+284	37	1_Tornado 2_Drought 4_ThunderstormWind 1_HighWind 2_Hail
+285	8	2_Drought 1_ThunderstormWind
+286	40	1_FlashFlood 2_Drought 3_ThunderstormWind 4_Hail
+287	43	1_FlashFlood 2_Drought 4_ThunderstormWind 1_Flood 2_Hail
+288	18	2_Drought 2_Flood
+289	46	2_Drought 3_ThunderstormWind 2_Flood 4_Hail
+290	36	1_Lightning 2_Drought 1_ThunderstormWind 2_Flood 2_Hail
+291	33	1_Tornado 1_Lightning 2_Drought 1_Flood 2_Hail
+292	15	2_Drought 1_Flood 1_Hail
+293	28	2_Drought 2_ThunderstormWind 4_Hail
+294	24	2_Drought 3_ThunderstormWind 2_Hail
+295	14	1_Lightning 2_Drought 1_Hail
+296	12	2_Drought 1_ThunderstormWind 1_Hail
+297	20	2_FlashFlood 2_Drought
+298	32	2_FlashFlood 1_Tornado 2_Drought 1_ThunderstormWind
+299	12	2_Drought 2_ThunderstormWind
+300	12	2_Drought 2_ThunderstormWind
+301	12	1_Tornado 2_Drought
+302	16	1_Tornado 2_Drought 1_ThunderstormWind
+303	34	1_FlashFlood 1_Drought 2_ThunderstormWind 4_Hail
+304	2	1_Drought
+305	22	1_FlashFlood 1_Drought 2_ThunderstormWind 1_Hail
+306	22	1_Drought 1_HighWind 1_Flood 3_Hail
+307	21	1_Drought 3_ThunderstormWind 1_Flood
+308	14	1_Drought 1_HighWind 1_Flood 1_Hail
+309	18	1_FlashFlood 1_Drought 4_WinterWeather
+310	2	1_Drought
+311	5	1_Drought 1_HeavySnow
+312	9	1_Drought 1_Hail 1_HeavySnow
+313	3	1_Drought 1_HighWind
+314	18	2_FlashFlood 1_Drought
+315	8	1_Lightning 1_Drought
+316	11	1_Drought 1_HighWind 2_Hail
+317	6	1_Drought 1_ThunderstormWind
+318	2	1_Drought
+319	6	1_Drought 1_ThunderstormWind
+320	9	1_Drought 1_Flood
+321	2	1_Drought
+322	2	1_Drought
+323	2	1_Drought
+324	2	1_Drought
+325	6	1_Drought 1_Hail
+326	10	1_Drought 1_Blizzard
+327	20	1_Drought 5_WinterWeather 1_Blizzard
+328	16	1_Drought 1_ThunderstormWind 5_WinterWeather
+329	3	1_Drought 1_HighWind
+330	8	1_Drought 2_HeavySnow
+331	9	1_Drought 1_HighWind 2_HeavySnow
+332	12	1_Drought 1_ThunderstormWind 2_HeavySnow
+333	18	1_Drought 1_ThunderstormWind 4_HeavySnow
+334	14	1_Drought 4_HeavySnow
+339	5	1_WinterStorm
+343	11	1_ThunderstormWind 1_Hail 1_HeavySnow
+344	12	3_ThunderstormWind
+345	8	1_Tornado
+346	4	1_ThunderstormWind
+347	1	1_HighWind
+348	7	1_ThunderstormWind 1_HeavySnow
+349	7	1_ThunderstormWind 1_HeavySnow
+351	1	1_HighWind
+353	1	1_HighWind
+355	9	1_ThunderstormWind 1_HighWind 1_Hail
+356	1	1_HighWind
+357	4	1_HighWind 1_HeavySnow
+358	9	1_WinterStorm 1_HighWind 1_HeavySnow
+360	6	1_ThunderstormWind 2_HighWind
+361	1	1_HighWind
+362	6	1_WinterStorm 1_HighWind
+363	6	1_WinterStorm 1_HighWind
+365	5	1_WinterStorm

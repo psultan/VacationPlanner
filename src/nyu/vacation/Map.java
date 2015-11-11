@@ -1,4 +1,4 @@
-package org.nyu.map;
+package nyu.vacation;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,12 +19,11 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 public class Map {
-	public static void main(String[] args) throws Exception {
-		GeoApiContext context = new GeoApiContext().setApiKey("");
+	public double[][] getLatLng(String startLocation, String endLocation, String days) throws Exception {
+		int desiredDays = Integer.parseInt(days);
+		GeoApiContext context = new GeoApiContext().setApiKey(System.getenv("MAPKEY"));
 
-		int desiredDays = 7;
-		
-        DirectionsRoute[] routes = DirectionsApi.getDirections(context, "ny", "california").await();
+        DirectionsRoute[] routes = DirectionsApi.getDirections(context, startLocation, endLocation).await();
         long inSeconds = routes[0].legs[0].duration.inSeconds;
         long inMeters = routes[0].legs[0].distance.inMeters;
     	System.out.println("Steps:"+routes[0].legs[0].steps.length);
@@ -80,21 +79,20 @@ public class Map {
     	}
     	vacation[desiredDays-1][0]=routes[0].legs[0].endLocation.lat;
 		vacation[desiredDays-1][1]=routes[0].legs[0].endLocation.lng;
-    	System.out.println(Arrays.deepToString(vacation));
+    	
+		System.out.println(Arrays.deepToString(vacation));
     	System.out.println(routes[0].overviewPolyline.getEncodedPath().replace("\\","\\\\")); //the \ should not be treated as an escape character (this may not work with \\u)
     	//in case encodedPath fails
     	//for (LatLng point : routes[0].overviewPolyline.decodePath()){
     	//	System.out.format("[%f,%f],",point.lat, point.lng);
     	//}
-    	
-    	
-    	
-    	//store path in frusion tables
-    	
-    	
+		return vacation;
+	}
+		
+	public List<String> getFIPS (double[][] latlngs){
     	//get fips from latlng
 		List<String> FIPS = new ArrayList<String>();
-    	for(double[] latlng : vacation){
+    	for(double[] latlng : latlngs){
 	    	Client client = Client.create();
 			WebResource webResource = client.resource("http://data.fcc.gov/api/block/find?format=json&latitude="+latlng[0]+"&longitude="+latlng[1]+"&showall=true");
 			ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
@@ -106,7 +104,7 @@ public class Map {
 			JSONObject obj = new JSONObject(output);
 			FIPS.add(obj.getJSONObject("County").getString("FIPS"));
     	}
-		 System.out.println(Arrays.toString(FIPS.toArray()));
+		return FIPS;
 	}
 	
     public static final double R = 6372800; //earth radius in meters

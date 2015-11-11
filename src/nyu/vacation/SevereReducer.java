@@ -1,4 +1,4 @@
-package org.nyu.map;
+package nyu.vacation;
 
 import java.io.IOException;
 import java.util.ArrayList;
