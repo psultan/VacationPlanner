@@ -53,7 +53,7 @@ public abstract class MainRunner {
 	    
 	    //severe mapreduce job
 	    Job severeJob = new Job(conf, "SevereMapper");
-	    severeJob.setJarByClass(SevereRunner.class);
+	    severeJob.setJarByClass(MainRunner.class);
 	    severeJob.setJobName("SevereMapper");
 	    FileInputFormat.addInputPath(severeJob, new Path(args[3]));
 	    FileOutputFormat.setOutputPath(severeJob, new Path(args[4]));
@@ -78,8 +78,10 @@ public abstract class MainRunner {
 	    //final mapreduce (pig)
 	    PigServer pigServer = new PigServer(ExecType.MAPREDUCE);
         try {
-	        pigServer.registerQuery("A = load '" + "/user/cloudera/severeresult" + "' using TextLoader();");
-	        pigServer.registerQuery("B = foreach A generate $0 as id;");
+	        pigServer.registerQuery("severe = load '" + arg[4] + "' using TextLoader();");
+	        pigServer.registerQuery("temperature = load '" + arg[6] + "' using TextLoader();");
+	        pigServer.registerQuery("traffic = load '" + arg[8] + "' using TextLoader();");
+	        pigServer.registerQuery("B = foreach severe generate $0 as id;");
 	        pigServer.store("B", "finalresult");
 	    } 
 	    catch (IOException e) {
