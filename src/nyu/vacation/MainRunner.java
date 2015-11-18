@@ -25,23 +25,25 @@ public abstract class MainRunner {
 		/* arg0 start location
 		 * arg1 end location
 		 * arg2 duration
-		 * arg3 severe weather data
-		 * arg4 severe weather output
-		 * arg5 temp/prec data
-		 * arg6 temp/prec output
-		 * arg7 traffic data
-		 * arg8 traffic output
-		 * arg9 final output
+		 * arg3 desired temperature
+		 * arg4 severe weather data
+		 * arg5 severe weather output
+		 * arg6 temp/prec data
+		 * arg7 temp/prec output
+		 * arg8 traffic data
+		 * arg9 traffic output
+		 * 
+		 * arg10 final output
 		 */
 		if (args.length != 10) {
+			  //default args
 		      args = new String[10];
 		      args[0] = "NY";
 		      args[1] = "California";
 		      args[2] = "7";
-		      //args[3] = "s3n://severeweather/StormEvents_details-ftp_v1.0_d1950_c20150826.csv";
-		      //args[4] = "s3n://severeweather/results";
-		      args[3] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*";
-		      args[4] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/result";
+		      args[3] = "75";
+		      args[4] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*";
+		      args[5] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/result";
 		}
 		BasicConfigurator.configure();
 		Configuration conf = new Configuration();
@@ -55,8 +57,8 @@ public abstract class MainRunner {
 	    Job severeJob = new Job(conf, "SevereMapper");
 	    severeJob.setJarByClass(MainRunner.class);
 	    severeJob.setJobName("SevereMapper");
-	    FileInputFormat.addInputPath(severeJob, new Path(args[3]));
-	    FileOutputFormat.setOutputPath(severeJob, new Path(args[4]));
+	    FileInputFormat.addInputPath(severeJob, new Path(args[4]));
+	    FileOutputFormat.setOutputPath(severeJob, new Path(args[5]));
 	    severeJob.setMapperClass(SevereMapper.class);
 	    severeJob.setReducerClass(SevereReducer.class);
 	    severeJob.setMapOutputKeyClass(Text.class);
@@ -78,9 +80,9 @@ public abstract class MainRunner {
 	    //final mapreduce (pig)
 	    PigServer pigServer = new PigServer(ExecType.MAPREDUCE);
         try {
-	        pigServer.registerQuery("severe = load '" + arg[4] + "' using TextLoader();");
-	        pigServer.registerQuery("temperature = load '" + arg[6] + "' using TextLoader();");
-	        pigServer.registerQuery("traffic = load '" + arg[8] + "' using TextLoader();");
+	        pigServer.registerQuery("severe = load '" + arg[5] + "' using TextLoader();");
+	        pigServer.registerQuery("temperature = load '" + arg[7] + "' using TextLoader();");
+	        pigServer.registerQuery("traffic = load '" + arg[9] + "' using TextLoader();");
 	        pigServer.registerQuery("B = foreach severe generate $0 as id;");
 	        pigServer.store("B", "finalresult");
 	    } 
@@ -90,6 +92,7 @@ public abstract class MainRunner {
 
         
         //read pig output
+        /*
 		Path pt=new Path("hdfs://quickstart.cloudera:8020/user/cloudera/finalresult/part-m-00000");
         FileSystem fs = FileSystem.get(new Configuration());
         BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
@@ -103,6 +106,7 @@ public abstract class MainRunner {
         } finally {
           br.close();
         }
+        */
 	    
 	    
 	    long startTime = System.nanoTime();

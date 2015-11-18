@@ -1,0 +1,48 @@
+High Surf,0
+Astronomical Low Tide,0
+Rip Current,0
+Seiche,0
+High Wind,1
+Marine High Wind,1
+Strong Wind,2
+Marine Thunderstorm Wind,2
+Winter Weather,2
+Drought,2
+Marine Strong Wind,2
+Dense Smoke,3
+Dense Fog,3
+Sleet,3
+Frost/Freeze,3
+Storm Surge/Tide,3
+Freezing Fog,3
+Debris Flow,3
+Heat, 3
+Heavy Rain,3
+Heavy Snow,3
+Marine Hail,4
+Hail, 4
+Cold/Wind Chill,4
+Thunderstorm Wind,4
+Extreme Cold/Wind Chill,4
+Excessive Heat,4
+Lakeshore Flood,5
+Dust Storm,5
+Funnel Cloud,5
+Lake-Effect Snow,5
+Winter Storm,5
+Dust Devil,6
+Lightning,6
+Ice Storm,6
+Waterspout,6
+Flood,7
+Tropical Depression,7
+Wildfire,7
+Tropical Storm,7
+Tornado,8
+Blizzard,8
+Flash Flood,8
+Hurricane (Typhoon),9
+Coastal Flood,9
+Volcanic Ash,9
+Avalanche,10
+Tsunami,10
