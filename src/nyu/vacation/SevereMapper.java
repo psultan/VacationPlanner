@@ -102,8 +102,14 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
     	}
     	//county fips should have 3 digits
     	if(headers[count]=="CZ_FIPS"){
-    		if(token.length()==2){
+    		if(token.length()!=3 && !"".equals(token)){
     			token = String.format("%03d", Integer.parseInt(token));
+    		}
+    	}
+    	//state fips should have 2 digits
+    	if(headers[count]=="STATE_FIPS"){
+    		if(token.length()!=2 && !"".equals(token)){
+    			token = String.format("%02d", Integer.parseInt(token));
     		}
     	}
     	//remove spaces in event type
@@ -115,26 +121,27 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
     
     //some storms span multiple days
+    //System.out.println(row.get("BEGIN_YEARMONTH")+":"+row.get("BEGIN_DAY")+":"+row.get("END_YEARMONTH")+":"+row.get("END_DAY") +"_"+line);
 	Calendar stormstart = Calendar.getInstance();
 	stormstart.set(Calendar.YEAR, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(0,4)));
 	stormstart.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("BEGIN_DAY")));
-	stormstart.set(Calendar.MONTH, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(4)));
+	stormstart.set(Calendar.MONTH, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(4))-1);
 	Calendar stormend = Calendar.getInstance();
 	stormend.set(Calendar.YEAR, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(0,4)));
 	stormend.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("END_DAY")));
-	stormend.set(Calendar.MONTH, Integer.parseInt(row.get("END_YEARMONTH").substring(4)));
+	stormend.set(Calendar.MONTH, Integer.parseInt(row.get("END_YEARMONTH").substring(4))-1);
 
+	//loop over all days of the storm
 	while(!stormstart.after(stormend)){
 		String statecounty = row.get("STATE_FIPS")+row.get("CZ_FIPS");
 		if(FIPS.contains(statecounty)){  //conditional for performance consideration only 
-			
 			//determine all 'vacation dates' that will be affected by the storm 
 			Calendar firstDay = Calendar.getInstance();
-			firstDay.set(Calendar.YEAR, 2010); //do not pick a leap year
+			firstDay.set(Calendar.YEAR, stormstart.get(Calendar.YEAR)); 
 			firstDay.set(Calendar.DAY_OF_YEAR,stormstart.get(Calendar.DAY_OF_YEAR));
 			firstDay.add(Calendar.DATE, (FIPS.size()-1)*-1);
 			Calendar endDay = Calendar.getInstance();
-			endDay.set(Calendar.YEAR, 2010); //do not pick a leap year
+			endDay.set(Calendar.YEAR, stormstart.get(Calendar.YEAR));
 			endDay.set(Calendar.DAY_OF_YEAR,stormstart.get(Calendar.DAY_OF_YEAR));
 			while(!firstDay.after(endDay)){				
 				List<String> vacationdays = new ArrayList<String>();
@@ -145,14 +152,17 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
 					currentDay.add(Calendar.DATE, i);
 					vacationdays.add(String.format("%03d",currentDay.get(Calendar.DAY_OF_YEAR)));
 				}
-				firstDay.add(Calendar.DATE, 1);
 				
 				//only emit 'vacation dates' when the storm date=the day we are there 
 				if(vacationdays.indexOf(String.format("%03d", stormstart.get(Calendar.DAY_OF_YEAR)))==FIPS.indexOf(statecounty)){
+					//System.out.println(Joiner.on(" ").join(vacationdays)+", "+String.format("%03d",stormstart.get(Calendar.DAY_OF_YEAR))+"_"+stormstart.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE"));
+					//001 002 003 004, 001_2015_12305_Hail
+					//vacation days, stormday_stormyear_statecounty_stormtype
 					context.write(new Text(Joiner.on(" ").join(vacationdays)), 
-							new Text(String.format("%03d",stormstart.get(Calendar.DAY_OF_YEAR))+"_"+stormstart.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE")));
+							new Text(String.format("%03d",firstDay.get(Calendar.DAY_OF_YEAR))+"_"+firstDay.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE")));
 				}
 				
+				firstDay.add(Calendar.DATE, 1);
 			}
 		}
 	    stormstart.add(Calendar.DATE, 1);

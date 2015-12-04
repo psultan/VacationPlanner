@@ -87,11 +87,7 @@ public class Map {
     	//	System.out.format("[%f,%f],",point.lat, point.lng);
     	//}
     	
-    	
-    	
-    	//store path in frusion tables
-    	
-    	
+    	   	
     	//get fips from latlng
 		List<String> FIPS = new ArrayList<String>();
     	for(double[] latlng : vacation){
@@ -112,6 +108,7 @@ public class Map {
     public static final double R = 6372800; //earth radius in meters
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
     	//get distance between two points 
+    	//rosettacode.org/wiki/Haversine_formula
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         lat1 = Math.toRadians(lat1);

@@ -64,15 +64,19 @@ public class SevereReducer extends Reducer<Text, Text, Text, Text> {
 		scale.put("Avalanche"                , new int[]{10,0} );
 		scale.put("Tsunami"                  , new int[]{10,0} );
 
+	//build a cache since hadoop can only iterate over values once
 	ArrayList<Text> cache = new ArrayList<Text>();
 	for(Text value: values){
-		System.out.println(value);
 		cache.add(new Text(value));
 		String[] stormtype = value.toString().split("_");
+		//stormtype is last element in value
 		int[] scalevalues = scale.get(stormtype[stormtype.length-1]);
-		System.out.println(scalevalues[0]+" "+scalevalues[1]);
+		//increment scale tally for associated stormtype
 		scalevalues[1]++;
 	}
+	
+	//format output
+	//startday, total, [stormtally_stormtype,]
 	int total=0;
 	List<String> tallies = new ArrayList<String>();
 	for(String storm: scale.keySet()){
@@ -85,11 +89,14 @@ public class SevereReducer extends Reducer<Text, Text, Text, Text> {
 	}
 	String startday = key.toString().substring(0,3);
 	String totals = String.valueOf(total);
+	
 	//output with total
 	//context.write(new Text(startday),new Text(StringUtils.leftPad(totals,totals.length(),'0')));
+	
 	//output with total and tallies
-	context.write(new Text(startday),new Text(StringUtils.leftPad(totals,totals.length(),'0')+"\t"+Joiner.on(" ").join(tallies)));
+	//context.write(new Text(startday),new Text(StringUtils.leftPad(totals,totals.length(),'0')+"\t"+Joiner.on(" ").join(tallies)));
+	
 	//output with total and tallies and dates
-	//context.write(new Text(startday),new Text(StringUtils.leftPad(totals,totals.length(),'0')+" "+Joiner.on(" ").join(tallies)+" "+Joiner.on(" ").join(cache)));
+	context.write(new Text(startday),new Text(StringUtils.leftPad(totals,totals.length(),'0')+"\t"+Joiner.on(" ").join(tallies)+" "+Joiner.on(" ").join(cache)));
   }
 }

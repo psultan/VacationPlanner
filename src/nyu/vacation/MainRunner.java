@@ -18,6 +18,8 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.pig.ExecType;
 import org.apache.pig.PigServer;
 
+import com.google.api.client.repackaged.com.google.common.base.Joiner;
+
 
 public abstract class MainRunner {
 
@@ -35,15 +37,21 @@ public abstract class MainRunner {
 		 * 
 		 * arg10 final output
 		 */
+		long startTime = System.nanoTime();
 		if (args.length != 10) {
 			  //default args
-		      args = new String[10];
+		      args = new String[11];
 		      args[0] = "NY";
 		      args[1] = "California";
 		      args[2] = "7";
 		      args[3] = "75";
+		      
+		      //args[4] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*";
+		      //args[5] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results";
 		      args[4] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*";
-		      args[5] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/result";
+		      args[5] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results";
+		      
+		      args[10] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results2";
 		}
 		BasicConfigurator.configure();
 		Configuration conf = new Configuration();
@@ -51,7 +59,8 @@ public abstract class MainRunner {
 		Map geodata = new Map();
 		double[][] latlngs = geodata.getLatLng(args[0], args[1], args[2]);
 		List<String> FIPS = geodata.getFIPS(latlngs);
-	    conf.set("FIPS", Arrays.toString(FIPS.toArray()));
+		System.out.println(Joiner.on(" ").join(FIPS.toArray()));
+	    conf.set("FIPS", Joiner.on(" ").join(FIPS.toArray()));
 	    
 	    //severe mapreduce job
 	    Job severeJob = new Job(conf, "SevereMapper");
@@ -67,7 +76,6 @@ public abstract class MainRunner {
 	    severeJob.setOutputValueClass(Text.class);
 	    
 	    
-	    
 	    //temp/precip mapreduce job
 	    
 	    
@@ -76,41 +84,24 @@ public abstract class MainRunner {
 	    
 	    
 	    
+	    boolean result = severeJob.waitForCompletion(true);
 	    
 	    //final mapreduce (pig)
-	    PigServer pigServer = new PigServer(ExecType.MAPREDUCE);
+	    PigServer pigServer = new PigServer(ExecType.LOCAL);
         try {
-	        pigServer.registerQuery("severe = load '" + arg[5] + "' using TextLoader();");
-	        pigServer.registerQuery("temperature = load '" + arg[7] + "' using TextLoader();");
-	        pigServer.registerQuery("traffic = load '" + arg[9] + "' using TextLoader();");
-	        pigServer.registerQuery("B = foreach severe generate $0 as id;");
-	        pigServer.store("B", "finalresult");
+        	pigServer.registerQuery("A = LOAD '"+args[5]+"' USING PigStorage() as (day:double, total:double);");
+        	pigServer.registerQuery("B = ORDER A BY total;");
+        	pigServer.registerQuery("C = ORDER A BY total DESC;");
+        	pigServer.registerQuery("min = LIMIT B 1;");
+        	pigServer.registerQuery("max = LIMIT C 1;");
+        	pigServer.registerQuery("scaled = FOREACH A GENERATE $0, (10-1)/(max.total-min.total)*($1-max.total)+10;");
+        	pigServer.registerQuery("scaled = ORDER scaled BY $1;");
+	        pigServer.store("scaled", args[10]);
 	    } 
 	    catch (IOException e) {
 	        e.printStackTrace();
 	    }
-
         
-        //read pig output
-        /*
-		Path pt=new Path("hdfs://quickstart.cloudera:8020/user/cloudera/finalresult/part-m-00000");
-        FileSystem fs = FileSystem.get(new Configuration());
-        BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
-        try {
-          String line;
-          line=br.readLine();
-          while (line != null){
-            System.out.println(line);
-            line = br.readLine();
-          }
-        } finally {
-          br.close();
-        }
-        */
-	    
-	    
-	    long startTime = System.nanoTime();
-	    boolean result = severeJob.waitForCompletion(true);
 	    long endTime =System.nanoTime();
 	    System.out.println("Took "+(double)(endTime-startTime)/60000000000.0+" minutes");
 	    
