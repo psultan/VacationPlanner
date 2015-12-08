@@ -1,3 +1,6 @@
+//get latlng, fips for start location, end location, and duration
+//author: paul
+
 package nyu.vacation;
 
 import java.util.ArrayList;

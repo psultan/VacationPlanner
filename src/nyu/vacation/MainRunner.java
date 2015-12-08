@@ -1,3 +1,5 @@
+//main runner.  control 3 mapred jobs, and a final pig combiner
+//author paul
 package nyu.vacation;
 
 import java.io.BufferedReader;

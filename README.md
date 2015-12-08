@@ -8,7 +8,7 @@ We will look to answer the question, "When would be the best time of year to tak
   - Vipul Daundkar vtd213
 
 
-Input: Start Location, End Location, Duration in days. (Ny, California, 7)
+Input: Start Location, End Location, Duration in days, Ideal Temperature (Ny, California, 7, 75)
 
 Phase 1: Process route:
 
