@@ -69,8 +69,8 @@ public class SevereReducer extends Reducer<Text, Text, Text, Text> {
 	for(Text value: values){
 		cache.add(new Text(value));
 		String[] stormtype = value.toString().split("_");
-		//stormtype is last element in value
-		int[] scalevalues = scale.get(stormtype[stormtype.length-1]);
+		//stormtype is second to last element in value
+		int[] scalevalues = scale.get(stormtype[stormtype.length-2]);
 		//increment scale tally for associated stormtype
 		scalevalues[1]++;
 	}

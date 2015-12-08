@@ -122,7 +122,11 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
     
     //some storms span multiple days
     //System.out.println(row.get("BEGIN_YEARMONTH")+":"+row.get("BEGIN_DAY")+":"+row.get("END_YEARMONTH")+":"+row.get("END_DAY") +"_"+line);
-	Calendar stormstart = Calendar.getInstance();
+    Calendar stormoriginal = Calendar.getInstance();
+    stormoriginal.set(Calendar.YEAR, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(0,4)));
+    stormoriginal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("BEGIN_DAY")));
+    stormoriginal.set(Calendar.MONTH, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(4))-1);
+    Calendar stormstart = Calendar.getInstance();
 	stormstart.set(Calendar.YEAR, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(0,4)));
 	stormstart.set(Calendar.DAY_OF_MONTH, Integer.parseInt(row.get("BEGIN_DAY")));
 	stormstart.set(Calendar.MONTH, Integer.parseInt(row.get("BEGIN_YEARMONTH").substring(4))-1);
@@ -155,11 +159,11 @@ public class SevereMapper extends Mapper<LongWritable, Text, Text, Text> {
 				
 				//only emit 'vacation dates' when the storm date=the day we are there 
 				if(vacationdays.indexOf(String.format("%03d", stormstart.get(Calendar.DAY_OF_YEAR)))==FIPS.indexOf(statecounty)){
-					//System.out.println(Joiner.on(" ").join(vacationdays)+", "+String.format("%03d",stormstart.get(Calendar.DAY_OF_YEAR))+"_"+stormstart.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE"));
-					//001 002 003 004, 001_2015_12305_Hail
+					//System.out.println(vacationdays.indexOf(String.format("%03d", stormstart.get(Calendar.DAY_OF_YEAR))+", "+String.format("%03d",stormstart.get(Calendar.DAY_OF_YEAR))+"_"+stormstart.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE")+"_"+row.get("EVENT_ID")));
+					//001 002 003 004, 001_2015_12305_Hail_154513
 					//vacation days, stormday_stormyear_statecounty_stormtype
 					context.write(new Text(Joiner.on(" ").join(vacationdays)), 
-							new Text(String.format("%03d",firstDay.get(Calendar.DAY_OF_YEAR))+"_"+firstDay.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE")));
+							new Text(String.format("%03d",stormoriginal.get(Calendar.DAY_OF_YEAR))+"_"+stormoriginal.get(Calendar.YEAR)+"_"+statecounty+"_"+row.get("EVENT_TYPE")+"_"+row.get("EVENT_ID")));
 				}
 				
 				firstDay.add(Calendar.DATE, 1);
