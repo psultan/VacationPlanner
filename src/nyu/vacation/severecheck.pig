@@ -1,5 +1,6 @@
 /*
 aggregates severe weather per county
+author: paul
 */
 
 REGISTER /usr/jars/piggybank.jar;

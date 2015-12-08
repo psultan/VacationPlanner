@@ -1,3 +1,6 @@
+/*test normalizing intermediate values*/
+/*author: paul*/
+
 A = LOAD '/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results/part-r-00000' USING PigStorage() as (day:double, total:double);
 B = ORDER A BY total;
 C = ORDER A BY total DESC;

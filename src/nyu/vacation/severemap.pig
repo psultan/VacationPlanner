@@ -1,5 +1,6 @@
 /*
 find all events for a state-county
+author:paul
 */
 
 REGISTER /usr/jars/piggybank.jar;

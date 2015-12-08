@@ -1,4 +1,5 @@
 /*count the severe storms per month*/
+/*author: paul*/
 
 REGISTER /usr/jars/piggybank.jar;
 data = LOAD '/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/Storm*' USING org.apache.pig.piggybank.storage.CSVExcelStorage() AS (a,b,c,d,e,f,g,h,i,j:int,k,l,m,n,o:int,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,ass,at,au,av,aw,ax,ay);
