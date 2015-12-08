@@ -55,7 +55,7 @@ public abstract class MainRunner {
 		      
 		      args[9] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/trafficresults";
 		      
-		      args[10] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results2";
+		      args[10] = "/media/sf_Desktop/VacationPlanner/sandbox/paul/GoogleMapper/resources/severedata/ftp/results";
 		}
 		BasicConfigurator.configure();
 		Configuration conf = new Configuration();
