@@ -1,0 +1,81 @@
+<!-- This is a visualizer using Google Spreadsheets for LatLng Points-->
+<!-- author: paul-->
+
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div id="info"></div>
+	<div id='mymap' style="width: 900px; height: 500px;"></div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=INSERTKEYHERE&signed_in=true&libraries=geometry"></script>
+	<script src="gmaps.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
+	<script type="text/javascript">
+      google.load('visualization', '1.0', {'packages':["map"]});
+      google.setOnLoadCallback(drawSheetName);
+	  map = new GMaps({
+		div: '#mymap',
+		lat: 35.455197, 
+		lng: -98.803665,
+		zoom:7
+	   });
+
+	   styles = [{"stylers": [ { "lightness": 50 }, { "saturation": -57 } ]}]
+	   map.addStyle({
+		styledMapName:"Styled Map",
+		styles: styles,
+		mapTypeId: "map_style"
+		});
+		map.setStyle("map_style");
+	   
+	function drawSheetName() {
+	  //lat lng storm state county
+      var queryString = encodeURIComponent("SELECT A,B,C,D,E WHERE (A>0 and D=40) ORDER BY A, B");
+
+      var query = new google.visualization.Query(
+		  'https://docs.google.com/spreadsheets/d/1TSFXbyHZA-cI_Xa5ZOMfkl4G4yNzVQf_TN-Wf69qLgE/gviz/tq?sheet=Sheet1&headers=1&tq='
+		  + queryString);
+           query.send(handleSampleDataQueryResponse);
+	  }
+	  
+    function handleSampleDataQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+		
+        //set color of marker
+		var icon = {
+		path: "M-1,0a1,1 0 1,0 2,0a1,1 0 1,0 -2,0",
+		fillColor: '#FF0000',
+		fillOpacity: 1,
+		strokeWeight: 0,
+		scale: 2
+	}
+		
+	  var numRows = response.getDataTable().getNumberOfRows();
+	  // For each row in the table, create a marker
+	  for (var i = 0; i < numRows; i++) {
+		$("#info").text(numRows+" storms")
+	  	lat = response.getDataTable().getValue(i, 0)
+		lng = response.getDataTable().getValue(i, 1)
+		if(lat != undefined && lng != undefined){
+			map.addMarker({
+				lat:lat,
+				lng:lng,
+				icon:icon,
+			})
+		}
+	  }
+    }
+	
+	
+	
+    </script>
+	
+  </body>
+</html>

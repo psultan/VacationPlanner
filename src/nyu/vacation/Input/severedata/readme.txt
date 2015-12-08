@@ -1,0 +1,1 @@
+StormEvents_details-ftp_v1.0_d1993_c20150826 is an example file.  The full dataset can be downloaded from noaa ftp.
