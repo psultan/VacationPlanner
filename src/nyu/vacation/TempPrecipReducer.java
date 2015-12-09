@@ -10,7 +10,7 @@ public class TempPrecipReducer extends Reducer<Text, Text, Text, String> {
 	  @Override
 	  public void reduce(Text key, Iterable<Text> values,  Context context) throws IOException, InterruptedException {
 	    String Precp="";
-	    int idealTemp=0,tempPeriod=10,idealPrecipitation=0,preciPeriod=10,score=0;
+	    int idealTemp=0,tempPeriod=1,idealPrecipitation=0,preciPeriod=5,score=0;
 	    int AvgTmp=0;
 	    int tmp=0;
 	    Pattern p =null;
@@ -22,10 +22,14 @@ public class TempPrecipReducer extends Reducer<Text, Text, Text, String> {
 	    	}
 	    	else if(value.toString().contains("MI") || value.toString().contains("MA"))
 	    	{
-	    		if(AvgTmp==0 && value.toString().length()>3)
-	    			AvgTmp=Integer.parseInt(value.toString().substring(3));
-	    		else if(value.toString().length()>3 && AvgTmp!=0)
-	    			AvgTmp=(AvgTmp+Integer.parseInt(value.toString().substring(3)))/2;
+	    		String val=value.toString();
+	    		while(p.matches(".*[a-zA-Z]+.*", val)){
+	    		// if(p.matches(".*[a-zA-Z]+.*", val))
+	    			 val=val.substring(0,val.length()-1 );}
+	    		if(AvgTmp==0 && val.length()>3)
+	    			AvgTmp=Integer.parseInt(val.substring(3));
+	    		else if(val.length()>3 && AvgTmp!=0)
+	    			AvgTmp=(AvgTmp+Integer.parseInt(val.substring(3)))/2;
 	    		
 	    	}
 	    	else
